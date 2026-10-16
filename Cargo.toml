@@ -1,0 +1,29 @@
+[package]
+name = "fitkb-rust"
+version = "0.2.0"
+edition = "2021"
+
+[dependencies]
+axum = { version = "0.7", features = ["multipart"] }
+tokio = { version = "1.37", features = ["full", "process"] }
+tokio-util = { version = "0.7", features = ["io"] }
+tower = { version = "0.4", features = ["util", "timeout"] }
+tower-http = { version = "0.5", features = ["cors", "trace", "compression-full", "set-header", "timeout"] }
+maud = { version = "0.26", features = ["axum"] }
+lopdf = { version = "0.32", features = ["embed_image"] }
+image = { version = "0.25", default-features = false, features = ["jpeg", "png"] }
+tempfile = "3.10"
+uuid = { version = "1.8", features = ["v4", "fast-rng"] }
+zip = { version = "9.0", default-features = false, features = ["deflate"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+flate2 = "1.0"
+anyhow = "1.0"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
